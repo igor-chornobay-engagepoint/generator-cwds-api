@@ -1,0 +1,9 @@
+{
+  "generator-node": {
+    "promptValues": {
+      "authorName": "Igor Chornobay",
+      "authorEmail": "igor.chornobay@osi.ca.gov",
+      "authorUrl": ""
+    }
+  }
+}

@@ -7,10 +7,11 @@ First, install [Yeoman](http://yeoman.io) and generator-cwds-api using [npm](htt
 
 ```bash
 npm install -g yo
-npm install -g generator-cwds-api
+npm link
+#npm install -g generator-cwds-api
 ```
 
-Then generate your new project:
+Then generate your new project: Create a new folder and run in it 
 
 ```bash
 yo cwds-api

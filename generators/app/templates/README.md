@@ -1,6 +1,6 @@
 # CWDS <%=apiCaps %> API
 
-The CWDS API provides RESTful services for the CWDS Digital Service.
+The CWDS <%=apiCaps %> API provides RESTful services for the CWDS Digital Service.
 
 ## Wiki
 

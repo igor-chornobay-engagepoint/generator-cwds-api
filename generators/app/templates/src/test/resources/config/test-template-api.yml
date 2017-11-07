@@ -1,0 +1,58 @@
+applicationName: <%=apiProper %> API
+version: ${APP_VERSION:-local}
+
+server:
+  applicationConnectors:
+  - type: http
+    port: 8090
+  adminConnectors:
+  - type: http
+    port: 9081
+  requestLog:
+    appenders:
+      - type: console
+
+shiro:
+  iniConfigs: ["file:${SHIRO_CONFIG_PATH:-config/shiro_nosec.ini}"]
+
+swagger:
+  templateName: swagger.mustache
+  assetsPath: /static
+  resourcePackage: gov.ca.cwds.<%=apiPackage %>.web.rest
+  title: CWDS <%=apiCaps %> API
+  description: RESTful <%=apiCaps %> API.
+  logo: images/CWDS-API-Logo-Horizontal.png
+  loginUrl: ${LOGIN_URL:-http://localhost:8090/authn/login}
+  showSwagger: ${SHOW_SWAGGER:-true}
+
+webSecurity:
+  httpResponseSecurityHeaders:
+    # Prevent MIMI sniffing
+    X-Content-Type-Options: nosniff
+
+    # Prevent click-jacking
+    X-Frame-Options: deny
+
+    # Prevent cross site scripting
+    X-XSS-Protection: 1; mode=block
+
+    # Prevent everything other than same origin
+    Content-Security-Policy: default-src 'self' 'unsafe-inline';
+
+logging:
+  level: ${LOGLEVEL:-INFO}
+  loggers:
+    "org.hibernate.SQL":
+      level: INFO
+    "org.hibernate.type.descriptor.sql":
+      level: INFO
+    "AUDIT":
+      level: ALL
+    "gov.ca.cwds":
+      level: DEBUG
+  appenders:
+    - type: console
+      threshold: INFO
+      timeZone: UTC
+      target: stdout
+      logFormat: '[%X{remoteAddress}] [%date{ISO8601}] [%level] [%thread] [%X{uniqueId}] [%logger:] [%message]%n'

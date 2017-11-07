@@ -7,6 +7,8 @@ const templatePackage = parentPackage + 'template/';
 const javaPath = 'src/main/java/';
 const resourcesPath = 'src/main/resources/';
 const tPath = javaPath + templatePackage;
+const testPath = 'src/test/java/';
+const testResourcesPath = 'src/test/resources/';
 
 module.exports = class extends Generator {
   prompting() {
@@ -371,6 +373,89 @@ module.exports = class extends Generator {
       this.destinationPath(dPath + fName), contextT
     );
 
+
+
+    //Test
+    //src/test/resources/
+    sPath = testResourcesPath + 'config/';
+    dPath = sPath;
+    fName = 'test-template-api.yml';
+    dName = 'test-'+contextT.apiProjectName+'-api.yml';
+    this.fs.copyTpl(
+      this.templatePath(sPath + fName),
+      this.destinationPath(dPath + dName), contextT
+    );
+
+    //src/test/java/gov/ca/cwds/template/
+    sPath = testPath + templatePackage;
+    dPath = testPath + parentPackage + apiPackagePath;
+
+    fName = 'SmokeTestSuite.java';
+    this.fs.copyTpl(
+      this.templatePath(sPath + fName),
+      this.destinationPath(dPath + fName), contextT
+    );
+
+    //src/test/java/gov/ca/cwds/template/web/
+    sPath = testPath + templatePackage + 'web/';
+    dPath = testPath + parentPackage + apiPackagePath + 'web/';
+
+    fName = 'BaseApiIntegrationTest.java';
+    this.fs.copyTpl(
+      this.templatePath(sPath + fName),
+      this.destinationPath(dPath + fName), contextT
+    );
+
+    //src/test/java/gov/ca/cwds/template/web/rest/
+    sPath = testPath + templatePackage + 'web/rest/';
+    dPath = testPath + parentPackage + apiPackagePath + 'web/rest/';
+
+    fName = 'LoggingFilter.java';
+    this.fs.copyTpl(
+      this.templatePath(sPath + fName),
+      this.destinationPath(dPath + fName), contextT
+    );
+    fName = 'RestClientTestRule.java';
+    this.fs.copyTpl(
+      this.templatePath(sPath + fName),
+      this.destinationPath(dPath + fName), contextT
+    );
+
+
+    //src/test/java/gov/ca/cwds/template/web/rest/system/
+    sPath = testPath + templatePackage + 'web/rest/system/';
+    dPath = testPath + parentPackage + apiPackagePath + 'web/rest/system/';
+
+    fName = 'SystemInformationResourceTest.java';
+    this.fs.copyTpl(
+      this.templatePath(sPath + fName),
+      this.destinationPath(dPath + fName), contextT
+    );
+
+    //src/test/java/gov/ca/cwds/template/web/rest/utils/
+    sPath = testPath + templatePackage + 'web/rest/utils/';
+    dPath = testPath + parentPackage + apiPackagePath + 'web/rest/utils/';
+
+    fName = 'AssertFixtureUtils.java';
+    this.fs.copyTpl(
+      this.templatePath(sPath + fName),
+      this.destinationPath(dPath + fName), contextT
+    );
+    fName = 'AssertResponseHelper.java';
+    this.fs.copyTpl(
+      this.templatePath(sPath + fName),
+      this.destinationPath(dPath + fName), contextT
+    );
+    fName = 'TestModeUtils.java';
+    this.fs.copyTpl(
+      this.templatePath(sPath + fName),
+      this.destinationPath(dPath + fName), contextT
+    );
+    fName = 'VelocityHelper.java';
+    this.fs.copyTpl(
+      this.templatePath(sPath + fName),
+      this.destinationPath(dPath + fName), contextT
+    );
 
 
   }
